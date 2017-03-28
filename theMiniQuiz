@@ -1,0 +1,129 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class improvedQuiz {
+  public static void main(String[]args) {
+    SwingUtilities.invokeLater(new Runnable() {
+      public void run(){
+        theQuestion1();
+      }
+    });
+  }
+  
+  static void theQuestion1() {
+    final JFrame frame = new JFrame("Ryan's Quiz");
+    final JLabel incorrect = new JLabel("INCORRECT!");
+    final JLabel correct = new JLabel("CORRECT!");
+    final JButton next = new JButton("Next Question >>");
+    next.setBounds(128, 320, 135, 30);
+    final JButton exit = new JButton("Exit Quiz");
+    exit.setBounds(145, 320, 100, 30);
+    
+    incorrect.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+    correct.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+    incorrect.setBounds(135, 140, 120, 50);
+    correct.setBounds(148, 140, 100, 15);
+    
+    final JLabel question1 = new JLabel(" ");
+    
+    final JButton answerQ1A1 = new JButton("4");
+    answerQ1A1.setBounds(35, 200, 90, 55);
+    final JButton answerQ1A2 = new JButton("2");
+    answerQ1A2.setBounds(148, 200, 90, 55);
+    final JButton answerQ1A3 = new JButton("16");
+    answerQ1A3.setBounds(260, 200, 90, 55);
+    
+    answerQ1A1.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        frame.add(incorrect);
+        frame.repaint();
+      }
+    });
+    answerQ1A2.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        frame.add(correct);
+        frame.repaint();
+      }
+    });
+    answerQ1A3.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        frame.add(incorrect);
+        frame.repaint();
+      }
+    });
+    
+    next.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        frame.remove(answerQ1A1);
+        frame.remove(answerQ1A2);
+        frame.remove(answerQ1A3);
+        frame.remove(correct);
+        frame.remove(question1);
+        question2(frame, correct, incorrect, exit);
+        frame.remove(next);
+        frame.add(exit);
+        frame.repaint();
+      }
+    });
+    
+    question1.setText("<html> &nbsp int orange = (29 % 5) * 4 / 8<br>What integer will orange equal to?</html>");
+    question1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+    question1.setBounds(65, 2, 270, 100);
+    
+    frame.setLayout(null);
+    frame.setPreferredSize(new Dimension(400, 400));
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    frame.add(question1);
+    frame.add(answerQ1A1);
+    frame.add(answerQ1A2);
+    frame.add(answerQ1A3);
+    frame.add(next);
+    frame.pack();
+    frame.setVisible(true);
+  }
+  
+  static void question2(final JFrame frame, final JLabel correct, final JLabel incorrect, final JButton exit) {
+    JLabel question2 = new JLabel(" ");
+    
+    question2.setText("<html> How many objects will be created in the following code?<br> &nbsp String s1=\"Welcome\"<br> &nbsp String s2=\"Welcome\"");
+    question2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+    question2.setBounds(90, 2, 270, 100);
+    
+    JButton answerQ2A1 = new JButton("1");
+    answerQ2A1.setBounds(35, 200, 90, 55);
+    JButton answerQ2A2 = new JButton("2");
+    answerQ2A2.setBounds(148, 200, 90, 55);
+    JButton answerQ2A3 = new JButton("4");
+    answerQ2A3.setBounds(260, 200, 90, 55);
+    
+    answerQ2A1.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        frame.add(correct);
+        frame.repaint();
+      }
+    });
+    answerQ2A2.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        frame.add(incorrect);
+        frame.repaint();
+      }
+    });
+    answerQ2A3.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        frame.add(incorrect);
+        frame.repaint();
+      }
+    });
+    exit.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        frame.dispose();
+      }
+    });
+    
+    frame.add(question2);
+    frame.add(answerQ2A1);
+    frame.add(answerQ2A2);
+    frame.add(answerQ2A3);
+  }
+}
